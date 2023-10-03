@@ -1,6 +1,6 @@
 {
-  "name": "tailwind-color-matcher",
-  "displayName": "tailwind-color-matcher",
+  "name": "tailwind-nearest-color",
+  "displayName": "Tailwind Nearest Color",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -15,13 +15,33 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tailwindNearestColor",
+          "title": "Tailwind Nearest Color",
+          "icon": "assets/tailwind-color-match-logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "tailwindNearestColor": [
+        {
+          "type": "webview",
+          "id": "tailwindNearestColorView",
+          "name": "Tailwind Nearest Color"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "tailwind-color-matcher.helloWorld",
-        "title": "Hello World"
+        "category": "Tailwind Nearest Color",
+        "command": "tailwind-nearest-color.setTailwindVersion",
+        "title": "Set Tailwind Version"
       },
       {
-        "command": "tailwind-color-matcher.matchColor",
+        "category": "Tailwind Nearest Color",
+        "command": "tailwind-nearest-color.matchColor",
         "title": "Match Color"
       }
     ]
@@ -57,6 +77,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@vscode/webview-ui-toolkit": "^1.2.2",
     "nearest-color": "^0.4.4"
   }
 }

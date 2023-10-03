@@ -1,22 +1,32 @@
+import * as nearestColor from 'nearest-color';
 import * as vscode from 'vscode';
+import { commands } from './commands';
 import { flattenColors } from './tailwindColorMaps/utils';
 import { colors as colorsV2 } from './tailwindColorMaps/v2';
-import * as nearestColor from 'nearest-color';
+import { TailwindNearestColorProvider } from '../NearestColorViewProvider';
 
-export function activate(context: vscode.ExtensionContext) {
-  const mappedColors = flattenColors(colorsV2);
-  const getNearestColor = nearestColor.from(mappedColors);
+const mappedColors = flattenColors(colorsV2);
+const getNearestColor = nearestColor.from(mappedColors);
 
-  let disposable = vscode.commands.registerCommand(
-    'tailwind-color-matcher.matchColor',
-    () => {
-      const color = getNearestColor('#123456');
-      vscode.window.showInformationMessage(color.name);
-    },
+const subscribeCommands = (context: vscode.ExtensionContext) => {
+  //   const provider = new TailwindNearestColorProvider(context.extensionUri);
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(commands.matchColor.command, () =>
+      commands.matchColor.callback(context, getNearestColor),
+    ),
+    vscode.commands.registerCommand(
+      commands.setTailwindVersion.command,
+      commands.setTailwindVersion.callback,
+    ),
+    // vscode.window.registerWebviewViewProvid//er(
+    //   TailwindNearestColorProvider.viewType,
+    //   provider,
+    // ),
   );
+};
 
-  context.subscriptions.push(disposable);
-}
-
-// This method is called when your extension is deactivated
+export const activate = (context: vscode.ExtensionContext) => {
+  subscribeCommands(context);
+};
 export function deactivate() {}
