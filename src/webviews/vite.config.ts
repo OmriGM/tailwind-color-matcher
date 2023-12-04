@@ -5,10 +5,10 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: '../../media/compiled',
+    outDir: '../../media',
     rollupOptions: {
       output: {
-        entryFileNames: '[name].js',
+        entryFileNames: 'main.js',
         assetFileNames: 'main.[ext]',
       },
     },
