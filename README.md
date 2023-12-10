@@ -1,8 +1,14 @@
-# Tailwind Color Translator for VSCode
+<div align="center">
 
-Tailwind Color Translator is a Visual Studio Code extension designed to streamline the workflow of front-end developers by translating HEX color values into equivalent Tailwind CSS classes. This tool bridges the gap between custom color palettes and Tailwind's utility-first approach, ensuring a more efficient and integrated development experience.
+# Tailwind Color Matcher for VSCode
 
-![Tailwind Color Translator in action](path-to-image.png) <!-- Replace with the actual path to the screenshot in your GitHub repository -->
+Tailwind Color Matcher is a Visual Studio Code extension designed to streamline the workflow of front-end developers by translating HEX color values into equivalent Tailwind color classes. This tool bridges the gap between arbitrary colors and Tailwind's utility-first approach, ensuring a more efficient and integrated development experience.
+
+![Tailwind Color Matcher in action](./assets/extension-demo.gif)
+
+  <img src="./assets/extension-screenshot.png" />
+
+</div>
 
 ## Features
 
@@ -18,7 +24,7 @@ Tailwind Color Translator is a Visual Studio Code extension designed to streamli
 3. Type `ext install your-extension-name` replacing `your-extension-name` with the name of this extension.
 4. Click on the install button to install the extension.
 
-Alternatively, you can search for "Tailwind Color Translator" in the Extensions view (`Ctrl+Shift+X`) and install it from there.
+Alternatively, you can search for "Tailwind Color Matcher" in the Extensions view (`Ctrl+Shift+X`) and install it from there.
 
 ## Usage
 
@@ -27,13 +33,13 @@ Once installed, you have multiple ways to use the extension:
 ### Translate HEX Values to Tailwind Classes:
 
 1. Open a CSS or HTML file.
-2. Use the command palette (`Ctrl+Shift+P`) and type 'Translate HEX to Tailwind'.
-3. Enter the HEX color value or use the color picker to select a color.
+2. Use the command palette (`Ctrl+Shift+P`) and type 'Match Color'.
+3. Enter the HEX color value.
 4. The closest Tailwind CSS class will be displayed and can be copied to the clipboard if desired.
 
 ### Manual Color Selection:
 
-1. Focus on the extension view in the sidebar.
+1. Focus on the extension view in the sidebar by opening the command palette (`Ctrl+Shift+P`) and typing 'Focus on Tailwind Color Matcher View'.
 2. Use the color palette or the color text input to choose a color.
 3. The extension will automatically suggest the nearest Tailwind CSS class for your selection.
 
@@ -62,16 +68,6 @@ Reach out to the maintainer at one of the following places:
 - [GitHub issues](link-to-the-repo-issues) for bug reports or feature requests.
 - [Twitter](link-to-twitter) for quick questions or saying hi!
 
-## Roadmap
-
-- [ ] Support for more color formats
-- [ ] Integration with other design tools
-- [ ] Offline support
-
 See the [open issues](link-to-the-repo-issues) for a full list of proposed features (and known issues).
 
----
-
-> "Any application that can be written in JavaScript, will eventually be written in JavaScript." - Jeff Atwood
-
-Embrace the power of Tailwind CSS in your VSCode environment. Happy coding!
+</div>
