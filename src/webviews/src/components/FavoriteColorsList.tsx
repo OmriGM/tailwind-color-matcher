@@ -7,7 +7,7 @@ export const FavoriteColors = () => {
 
   return (
     <>
-      <div className={'flex items-center gap-1'}>
+      <div className={'flex items-center gap-2'}>
         <HeartFilledIcon />
         <h2>Favorite Colors</h2>
       </div>
