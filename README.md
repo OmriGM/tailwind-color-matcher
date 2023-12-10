@@ -4,9 +4,9 @@
 
 Tailwind Color Matcher is a Visual Studio Code extension designed to streamline the workflow of front-end developers by translating HEX color values into equivalent Tailwind color classes. This tool bridges the gap between arbitrary colors and Tailwind's utility-first approach, ensuring a more efficient and integrated development experience.
 
-![Tailwind Color Matcher in action](./assets/extension-demo.gif)
+![Tailwind Color Matcher in action](https://raw.githubusercontent.com/OmriGM/tailwind-color-matcher/main/assets/extension-demo.gif)
 
-  <img src="./assets/extension-screenshot.png" />
+  <img src="https://raw.githubusercontent.com/OmriGM/tailwind-color-matcher/main/assets/extension-screenshot.png" />
 
 </div>
 
