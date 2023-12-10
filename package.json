@@ -4,6 +4,7 @@
   "description": "Tailwind Color Matcher: Enhance your VSCode workflow by translating HEX colors to Tailwind CSS classes instantly. Use the color picker for easy class suggestions and management.",
   "publisher": "OmriGrossman",
   "version": "1.0.0",
+  "icon": "assets/tailwind-color-matcher-ext-logo.png",
   "galleryBanner": {
     "color": "#6490d7",
     "theme": "light"
