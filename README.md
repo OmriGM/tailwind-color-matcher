@@ -6,8 +6,6 @@ Tailwind Color Matcher is a Visual Studio Code extension designed to streamline 
 
 ![Tailwind Color Matcher in action](https://raw.githubusercontent.com/OmriGM/tailwind-color-matcher/main/assets/extension-demo.gif)
 
-  <img src="https://raw.githubusercontent.com/OmriGM/tailwind-color-matcher/main/assets/extension-screenshot.png" />
-
 </div>
 
 ## Features
@@ -17,14 +15,9 @@ Tailwind Color Matcher is a Visual Studio Code extension designed to streamline 
 - **Favorites Management:** Easily manage a list of favorite colors directly within the extension for quick reference and reuse.
 - **Copy to Clipboard:** Quickly copy the Tailwind CSS class to your clipboard with one click.
 
-## Installation
-
-1. Open Visual Studio Code.
-2. Press `Ctrl+P` to open the Quick Open dialog.
-3. Type `ext install your-extension-name` replacing `your-extension-name` with the name of this extension.
-4. Click on the install button to install the extension.
-
-Alternatively, you can search for "Tailwind Color Matcher" in the Extensions view (`Ctrl+Shift+X`) and install it from there.
+<div align="center">
+  <img src="https://raw.githubusercontent.com/OmriGM/tailwind-color-matcher/main/assets/extension-screenshot.png" />
+</div>
 
 ## Usage
 
@@ -60,14 +53,5 @@ Don't forget to give the project a star! Thanks again!
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-## Support
-
-Reach out to the maintainer at one of the following places:
-
-- [GitHub issues](link-to-the-repo-issues) for bug reports or feature requests.
-- [Twitter](link-to-twitter) for quick questions or saying hi!
-
-See the [open issues](link-to-the-repo-issues) for a full list of proposed features (and known issues).
 
 </div>
