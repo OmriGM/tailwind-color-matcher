@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 import { validateHexColor } from './tailwindColorMaps/utils';
-import { CommandTypes, TailwindNearestColorCommand } from './types';
-import { TailwindNearestColorProvider } from './NearestColorViewProvider';
+import { CommandTypes, TailwindColorMatcherCommand } from './types';
+import { TailwindColorMatcherProvider } from './colorMatcherViewProvider';
 
-export const commands: Record<CommandTypes, TailwindNearestColorCommand> = {
+export const commands: Record<CommandTypes, TailwindColorMatcherCommand> = {
   matchColor: {
-    command: 'tailwind-nearest-color.matchColor',
-    callback: async (webviewProvider: TailwindNearestColorProvider) => {
+    command: 'tailwind-color-matcher.matchColor',
+    callback: async (webviewProvider: TailwindColorMatcherProvider) => {
       const value = await vscode.window.showInputBox({
         placeHolder: 'Enter a color',
         value: '#',
@@ -25,7 +25,7 @@ export const commands: Record<CommandTypes, TailwindNearestColorCommand> = {
     },
   },
   setTailwindVersion: {
-    command: 'tailwind-nearest-color.setTailwindVersion',
+    command: 'tailwind-color-matcher.setTailwindVersion',
     callback: async () => {
       const version = await vscode.window.showQuickPick(['v2', 'v1', 'v3']);
       vscode.window.showInformationMessage(

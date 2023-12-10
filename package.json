@@ -1,13 +1,27 @@
 {
-  "name": "tailwind-nearest-color",
-  "displayName": "Tailwind Nearest Color",
-  "description": "",
+  "name": "tailwind-color-matcher",
+  "displayName": "Tailwind Color Matcher",
+  "description": "Tailwind Color Matcher: Enhance your VSCode workflow by translating HEX colors to Tailwind CSS classes instantly. Use the color picker for easy class suggestions and management.",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.82.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OmriGM/tailwind-color-matcher"
+  },
   "categories": [
+    "Visualization",
     "Other"
+  ],
+  "keywords": [
+    "tailwind",
+    "css",
+    "style",
+    "color-customization",
+    "color",
+    "color-tokenizer",
+    "color-picker"
   ],
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
@@ -18,25 +32,25 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "tailwindNearestColor",
-          "title": "Tailwind Nearest Color",
+          "id": "tailwindColorMatcher",
+          "title": "Tailwind Color Matcher",
           "icon": "assets/tailwind-color-match-logo.svg"
         }
       ]
     },
     "views": {
-      "tailwindNearestColor": [
+      "tailwindColorMatcher": [
         {
           "type": "webview",
-          "id": "tailwindNearestColorView",
-          "name": "Tailwind Nearest Color"
+          "id": "tailwindColorMatcherView",
+          "name": "Tailwind Color Matcher"
         }
       ]
     },
     "commands": [
       {
-        "category": "Tailwind Nearest Color",
-        "command": "tailwind-nearest-color.matchColor",
+        "category": "Tailwind Color Matcher",
+        "command": "tailwind-color-matcher.matchColor",
         "title": "Match Color"
       }
     ]

@@ -1,6 +1,6 @@
 export type CommandTypes = 'matchColor' | 'setTailwindVersion';
 
-export type TailwindNearestColorCommand = {
+export type TailwindColorMatcherCommand = {
   command: string;
   callback: (...args: any[]) => any;
 };

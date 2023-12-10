@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
-import { TailwindNearestColorProvider } from './NearestColorViewProvider';
+import { TailwindColorMatcherProvider } from './colorMatcherViewProvider';
 import { commands } from './commands';
 
 const subscribeCommands = (context: vscode.ExtensionContext) => {
-  const provider = new TailwindNearestColorProvider(context);
+  const provider = new TailwindColorMatcherProvider(context);
 
   context.subscriptions.push(
     vscode.commands.registerCommand(commands.matchColor.command, () =>
@@ -14,7 +14,7 @@ const subscribeCommands = (context: vscode.ExtensionContext) => {
       commands.setTailwindVersion.callback,
     ),
     vscode.window.registerWebviewViewProvider(
-      TailwindNearestColorProvider.viewType,
+      TailwindColorMatcherProvider.viewType,
       provider,
       {
         webviewOptions: {

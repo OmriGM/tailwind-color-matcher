@@ -5,11 +5,11 @@ import * as vscode from 'vscode';
 // TODO: Use React js
 // TODO: Manage tailwind versions color maps
 
-export class TailwindNearestColorProvider
+export class TailwindColorMatcherProvider
   implements vscode.WebviewViewProvider
 {
   private _view?: vscode.WebviewView;
-  public static readonly viewType = 'tailwindNearestColorView';
+  public static readonly viewType = 'tailwindColorMatcherView';
 
   constructor(private readonly context: vscode.ExtensionContext) {}
 
@@ -38,7 +38,7 @@ export class TailwindNearestColorProvider
   };
 
   setColor = (color: string) => {
-    vscode.commands.executeCommand('tailwindNearestColorView.focus');
+    vscode.commands.executeCommand('tailwindColorMatcherView.focus');
     this._view?.webview.postMessage({
       command: 'setColor',
       value: color,
