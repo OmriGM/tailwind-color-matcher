@@ -4,13 +4,13 @@ import { flattenColors, validateHexColor } from './colorUtils';
 import { ColorBox } from './components/ColorBox';
 import { ColorInput } from './components/ColorInput';
 import { colors } from './v3';
-import { useVsCodeBridge } from './hooks/useMessageBroker';
+import { useMessageBroker } from './hooks/useMessageBroker';
 import { FavoriteColors } from './components/FavoriteColorsList';
 import { ColorProvider } from './providers/colorProvider';
 import { ColorMatch } from './types';
 
 const App = () => {
-  const { postError } = useVsCodeBridge();
+  const { postError } = useMessageBroker();
   const [colorMatch, setColorMatch] = useState<ColorMatch>();
   const [hexColor, setHexColor] = useState('#2f22f2');
   const mappedColors = flattenColors(colors);

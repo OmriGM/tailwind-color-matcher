@@ -3,7 +3,7 @@ import { useColors } from '../hooks/useColors';
 import { FavoriteColorItem } from './FavoriteColorItem';
 
 export const FavoriteColors = () => {
-  const { favoriteColors } = useColors(); // Use your custom hook here
+  const { favoriteColors } = useColors();
 
   return (
     <>

@@ -33,6 +33,9 @@ export class TailwindColorMatcherProvider
             message.value + ' copied to clipboard!',
           );
           return;
+        case 'error':
+          vscode.window.showErrorMessage(message.value);
+          return;
       }
     });
   };

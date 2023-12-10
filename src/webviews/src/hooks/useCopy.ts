@@ -1,7 +1,7 @@
-import { useVsCodeBridge } from './useMessageBroker';
+import { useMessageBroker } from './useMessageBroker';
 
 export const useCopy = () => {
-  const { postMessage } = useVsCodeBridge();
+  const { postMessage } = useMessageBroker();
 
   return {
     copy: (value: string) => {

@@ -1,4 +1,4 @@
-export const useVsCodeBridge = () => {
+export const useMessageBroker = () => {
   return {
     postMessage: ({ command, value }: { command: string; value: unknown }) => {
       tsvscode.postMessage({
