@@ -2,7 +2,7 @@
   "name": "tailwind-nearest-color",
   "displayName": "Tailwind Nearest Color",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -34,11 +34,6 @@
       ]
     },
     "commands": [
-      {
-        "category": "Tailwind Nearest Color",
-        "command": "tailwind-nearest-color.setTailwindVersion",
-        "title": "Set Tailwind Version"
-      },
       {
         "category": "Tailwind Nearest Color",
         "command": "tailwind-nearest-color.matchColor",

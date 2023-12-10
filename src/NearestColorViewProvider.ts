@@ -11,14 +11,14 @@ export class TailwindNearestColorProvider
   private _view?: vscode.WebviewView;
   public static readonly viewType = 'tailwindNearestColorView';
 
-  constructor(private readonly _extensionUri: vscode.Uri) {}
+  constructor(private readonly context: vscode.ExtensionContext) {}
 
   resolveWebviewView(webviewView: vscode.WebviewView): void | Thenable<void> {
     this._view = webviewView;
 
     webviewView.webview.options = {
       enableScripts: true, // Enable JavaScript in the webview
-      localResourceRoots: [this._extensionUri], // Restrict the webview to only load resources from the `out` directory
+      localResourceRoots: [this.context.extensionUri], // Restrict the webview to only load resources from the `out` directory
     };
     webviewView.webview.html = this._getWebviewContent(webviewView.webview);
     this._setWebviewMessageListener(webviewView);
@@ -47,13 +47,13 @@ export class TailwindNearestColorProvider
 
   private _getWebviewContent = (webview: vscode.Webview) => {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'),
+      vscode.Uri.joinPath(this.context.extensionUri, 'media', 'main.js'),
     );
     const styleResetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'),
+      vscode.Uri.joinPath(this.context.extensionUri, 'media', 'reset.css'),
     );
     const styleMainUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'main.css'),
+      vscode.Uri.joinPath(this.context.extensionUri, 'media', 'main.css'),
     );
 
     const nonce = getNonce();

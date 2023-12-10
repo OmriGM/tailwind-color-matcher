@@ -1,24 +1,39 @@
-import { ChangeEvent } from 'react';
-import { useColorMatch } from '../hooks/useColorMatch';
+import Colorful from '@uiw/react-color-colorful';
 
-const ColorInput = () => {
-  const { userColor, setUserColor } = useColorMatch();
+const DEFAULT_COLOR = '#6226DB';
 
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setUserColor(target.value);
-  };
-
+export const ColorInput = ({
+  hex = DEFAULT_COLOR,
+  onChange,
+}: {
+  hex: string;
+  onChange: CallableFunction;
+}) => {
   return (
-    <div className="flex flex-col">
-      <input
-        type="text"
-        value={userColor}
-        onChange={handleChange}
-        className="border border-gray-300"
+    <div className="flex flex-col justify-center">
+      <Colorful
+        style={{ width: '100%' }}
+        disableAlpha
+        color={hex}
+        onChange={(color) => {
+          onChange(color.hex);
+        }}
       />
-      <div className="w-11 h-9" style={{ backgroundColor: userColor }}></div>
+      <div className={'flex gap-2 items-center'}>
+        <input
+          type={'text'}
+          placeholder={DEFAULT_COLOR}
+          className={`bg-${hex} my-4 py-1 px-3 rounded-md w-full bg-vscode-input-background text-vscode-input-foreground border border-vscode-input-border`}
+          value={hex}
+          onChange={({ target }) => {
+            onChange(target.value);
+          }}
+        />
+        <span
+          className={'w-8 h-8 rounded-md'}
+          style={{ backgroundColor: hex }}
+        ></span>
+      </div>
     </div>
   );
 };
-
-export default ColorInput;

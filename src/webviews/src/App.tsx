@@ -1,44 +1,19 @@
-import { useEffect, useState } from 'react';
-import ColorBox from './components/ColorBox';
-import ColorInput from './components/ColorInput';
-import { useColorMatch } from './hooks/useColorMatch';
 import * as nearestColor from 'nearest-color';
-import { flattenColors } from './colorUtils';
-import { colors as colorsV2 } from './v2';
+import { useEffect, useState } from 'react';
+import { flattenColors, validateHexColor } from './colorUtils';
+import { ColorBox } from './components/ColorBox';
+import { ColorInput } from './components/ColorInput';
+import { colors } from './v3';
+import { useVsCodeBridge } from './hooks/useMessageBroker';
+import { FavoriteColors } from './components/FavoriteColorsList';
+import { ColorProvider } from './providers/colorProvider';
+import { ColorMatch } from './types';
 
-export type RGB = {
-  r: number;
-  g: number;
-  b: number;
-};
-
-export type ColorMatch = {
-  name: string;
-  value: string;
-  rgb: RGB;
-};
-
-const useVsCodeBridge = () => {
-  return {
-    postMessage: ({ command, value }: { command: string; value: unknown }) => {
-      tsvscode.postMessage({
-        command,
-        value,
-      });
-    },
-    postError: (error: string) => {
-      tsvscode.postMessage({
-        command: 'error',
-        value: error,
-      });
-    },
-  };
-};
 const App = () => {
-  const { colorMatchObj } = useColorMatch();
-  const { postMessage, postError } = useVsCodeBridge();
-  const [currentColor, setCurrentColor] = useState('');
-  const mappedColors = flattenColors(colorsV2);
+  const { postError } = useVsCodeBridge();
+  const [colorMatch, setColorMatch] = useState<ColorMatch>();
+  const [hexColor, setHexColor] = useState('#2f22f2');
+  const mappedColors = flattenColors(colors);
   const getNearestColor = nearestColor.from(mappedColors);
 
   // listen to events from the webview
@@ -47,7 +22,7 @@ const App = () => {
       const message = event.data; // The JSON data our extension sent
       switch (message.command) {
         case 'setColor':
-          setCurrentColor(message.value);
+          setHexColor(message.value);
           break;
         default:
           break;
@@ -58,29 +33,33 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (!currentColor) return;
+    if (!hexColor || !validateHexColor(hexColor)) return;
 
-    const color: ColorMatch | null = getNearestColor(currentColor);
+    const color: ColorMatch | null = getNearestColor(hexColor);
     if (!color) {
       postError("Couldn't find a color match");
       return;
     }
-
-    postMessage({
-      command: 'copyToClipboard',
-      value: color.name,
-    });
-  }, [currentColor]);
+    setColorMatch(color);
+  }, [hexColor]);
 
   return (
-    <div className={'flex w-full flex-col mx-auto'}>
-      <h1>Entered Color:</h1>
-      <ColorInput />
-      <h1>Tailwind color class:</h1>
-      <span>{currentColor}</span>
-      <ColorBox colorMatchObj={colorMatchObj} />
-      {/* <ColorHistory colorHistory={colorHistory} /> */}
-    </div>
+    <ColorProvider>
+      <div
+        className={
+          'flex flex-col mx-auto gap-6 p-4 w-screen bg-vscode-panel-background h-full'
+        }
+      >
+        <ColorBox colorMatch={colorMatch} />
+        <ColorInput
+          hex={hexColor}
+          onChange={(color: string) => {
+            setHexColor(color);
+          }}
+        />
+        <FavoriteColors />
+      </div>
+    </ColorProvider>
   );
 };
 

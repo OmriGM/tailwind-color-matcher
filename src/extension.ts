@@ -1,15 +1,13 @@
 import * as vscode from 'vscode';
-import { commands } from './commands';
-import { flattenColors } from './tailwindColorMaps/utils';
-import { colors as colorsV2 } from './tailwindColorMaps/v2';
 import { TailwindNearestColorProvider } from './NearestColorViewProvider';
+import { commands } from './commands';
 
 const subscribeCommands = (context: vscode.ExtensionContext) => {
-  const provider = new TailwindNearestColorProvider(context.extensionUri);
+  const provider = new TailwindNearestColorProvider(context);
 
   context.subscriptions.push(
     vscode.commands.registerCommand(commands.matchColor.command, () =>
-      commands.matchColor.callback(context, provider),
+      commands.matchColor.callback(provider),
     ),
     vscode.commands.registerCommand(
       commands.setTailwindVersion.command,
