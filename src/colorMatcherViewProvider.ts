@@ -1,9 +1,5 @@
 import * as vscode from 'vscode';
-
-// TODO: Show history of colors matched
-// TODO: Add color picker
-// TODO: Use React js
-// TODO: Manage tailwind versions color maps
+import { mixpanelService } from './mixpanel';
 
 export class TailwindColorMatcherProvider
   implements vscode.WebviewViewProvider
@@ -32,6 +28,10 @@ export class TailwindColorMatcherProvider
           vscode.window.showInformationMessage(
             message.value + ' copied to clipboard!',
           );
+          return;
+        case 'sendAnalytics':
+          const { eventName, eventProps } = message.value;
+          mixpanelService.trackEvent(eventName, eventProps);
           return;
         case 'error':
           vscode.window.showErrorMessage(message.value);

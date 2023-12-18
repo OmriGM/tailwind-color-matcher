@@ -93,6 +93,7 @@
   },
   "dependencies": {
     "@vscode/webview-ui-toolkit": "^1.2.2",
+    "mixpanel": "^0.18.0",
     "nearest-color": "^0.4.4"
   }
 }

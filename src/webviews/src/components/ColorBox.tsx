@@ -1,9 +1,10 @@
 import { HeartFilledIcon, HeartIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import tinyColor from 'tinycolor2';
+import { useSendAnalytics } from '../hooks/useAnalytics';
 import { useColors } from '../hooks/useColors';
-import { CopyColorButton } from './CopyColorButton';
 import { ColorMatch } from '../types';
+import { CopyColorButton } from './CopyColorButton';
 
 type ColorBoxProps = {
   colorMatch?: ColorMatch;
@@ -12,6 +13,7 @@ type ColorBoxProps = {
 export const ColorBox = ({ colorMatch }: ColorBoxProps) => {
   const isLightColor = tinyColor(colorMatch?.value).isLight();
   const { favoriteColors, addColor, removeColor } = useColors();
+  const { sendAnalytics } = useSendAnalytics();
   const [effect, setEffect] = useState(false);
 
   const iconClassName = `w-7 h-7 z-10 cursor-pointer ${
@@ -29,6 +31,13 @@ export const ColorBox = ({ colorMatch }: ColorBoxProps) => {
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
+            sendAnalytics({
+              eventName: 'Remove color from favorite',
+              eventProps: {
+                color: colorMatch,
+                using: 'color_box',
+              },
+            });
             removeColor(colorMatch);
           }}
         />
@@ -38,6 +47,13 @@ export const ColorBox = ({ colorMatch }: ColorBoxProps) => {
             event.preventDefault();
             event.stopPropagation();
             setEffect(true);
+            sendAnalytics({
+              eventName: 'Add color to favorite',
+              eventProps: {
+                color: colorMatch,
+                using: 'color_box',
+              },
+            });
             addColor(colorMatch);
           }}
           className={iconClassName}

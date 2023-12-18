@@ -3,14 +3,16 @@ import { useEffect, useState } from 'react';
 import { flattenColors, validateHexColor } from './colorUtils';
 import { ColorBox } from './components/ColorBox';
 import { ColorInput } from './components/ColorInput';
-import { colors } from './v3';
-import { useMessageBroker } from './hooks/useMessageBroker';
 import { FavoriteColors } from './components/FavoriteColorsList';
+import { useMessageBroker } from './hooks/useMessageBroker';
 import { ColorProvider } from './providers/colorProvider';
 import { ColorMatch } from './types';
+import { colors } from './v3';
+import { useSendAnalytics } from './hooks/useAnalytics';
 
 const App = () => {
   const { postError } = useMessageBroker();
+  const { sendAnalytics } = useSendAnalytics();
   const [colorMatch, setColorMatch] = useState<ColorMatch>();
   const [hexColor, setHexColor] = useState('#2f22f2');
   const mappedColors = flattenColors(colors);
@@ -22,6 +24,12 @@ const App = () => {
       const message = event.data; // The JSON data our extension sent
       switch (message.command) {
         case 'setColor':
+          sendAnalytics({
+            eventName: 'Set color from command pallette',
+            eventProps: {
+              color: message.value,
+            },
+          });
           setHexColor(message.value);
           break;
         default:
@@ -37,6 +45,12 @@ const App = () => {
 
     const color: ColorMatch | null = getNearestColor(hexColor);
     if (!color) {
+      sendAnalytics({
+        eventName: 'Translate nearest color',
+        eventProps: {
+          hexColor,
+        },
+      });
       postError("Couldn't find a color match");
       return;
     }

@@ -1,6 +1,7 @@
 import { TrashIcon } from '@radix-ui/react-icons';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import tinyColor from 'tinycolor2';
+import { useSendAnalytics } from '../hooks/useAnalytics';
 import { useColors } from '../hooks/useColors';
 import { useCopy } from '../hooks/useCopy';
 import { ColorMatch } from '../types';
@@ -14,6 +15,7 @@ type FavoriteColorItemProps = { color: ColorMatch };
 export const FavoriteColorItem = ({ color }: FavoriteColorItemProps) => {
   const { removeColor } = useColors();
   const { copy } = useCopy();
+  const { sendAnalytics } = useSendAnalytics();
   const isLightColor = tinyColor(color?.value).isLight();
 
   return (
@@ -21,7 +23,16 @@ export const FavoriteColorItem = ({ color }: FavoriteColorItemProps) => {
       <div className={'flex items-center gap-1'}>
         <TrashIcon
           className={iconClassName}
-          onClick={() => removeColor(color)}
+          onClick={() => {
+            sendAnalytics({
+              eventName: 'Remove color from favorite',
+              eventProps: {
+                color: color,
+                using: 'favorites_list',
+              },
+            });
+            removeColor(color);
+          }}
         />
       </div>
       <div className={'w-full'}>
@@ -31,7 +42,16 @@ export const FavoriteColorItem = ({ color }: FavoriteColorItemProps) => {
               <div
                 key={color.name}
                 style={{ background: color.value }}
-                onClick={() => copy(color.name)}
+                onClick={() => {
+                  sendAnalytics({
+                    eventName: 'Copy color',
+                    eventProps: {
+                      color: color,
+                      using: 'favorites_list',
+                    },
+                  });
+                  copy(color.name);
+                }}
                 className={`h-10 rounded-md flex justify-center gap-2 items-center cursor-pointer font-semibold ${
                   isLightColor ? 'text-black' : 'text-white'
                 }`}

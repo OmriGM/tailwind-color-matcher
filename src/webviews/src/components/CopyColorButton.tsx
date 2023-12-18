@@ -1,5 +1,6 @@
 import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
+import { useSendAnalytics } from '../hooks/useAnalytics';
 import { useCopy } from '../hooks/useCopy';
 
 type CopyColorButtonProps = {
@@ -13,6 +14,7 @@ export const CopyColorButton = ({
 }: CopyColorButtonProps) => {
   const [didCopy, setDidCopy] = useState(false);
   const { copy } = useCopy();
+  const { sendAnalytics } = useSendAnalytics();
 
   useEffect(() => {
     if (didCopy) {
@@ -26,6 +28,13 @@ export const CopyColorButton = ({
     <CopyIcon
       className={iconClassName}
       onClick={() => {
+        sendAnalytics({
+          eventName: 'Copy color',
+          eventProps: {
+            color: value,
+            using: 'color_box',
+          },
+        });
         setDidCopy(true);
         copy(value);
       }}
