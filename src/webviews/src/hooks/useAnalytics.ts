@@ -9,7 +9,7 @@ export const useSendAnalytics = () => {
       eventProps,
     }: {
       eventName: string;
-      eventProps: Record<string, string | number | object>;
+      eventProps?: Record<string, string | number | object>;
     }) => {
       postMessage({
         command: 'sendAnalytics',

@@ -1,15 +1,23 @@
+import { useSendAnalytics } from '../hooks/useAnalytics';
+
 const BuyMeACoffee = () => {
+  const { sendAnalytics } = useSendAnalytics();
+
   return (
     <a
       href="https://www.buymeacoffee.com/omrigr123c"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => {
+        sendAnalytics({
+          eventName: 'Donation clicked',
+        });
+      }}
     >
       <img
         src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
         alt="Buy Me A Coffee"
         className={'w-32'}
-        // style={{ height: '30px', width: '104px' }}
       />
     </a>
   );
