@@ -3,7 +3,7 @@
   "displayName": "Tailwind Color Matcher",
   "description": "Tailwind Color Matcher: Enhance your VSCode workflow by translating HEX colors to Tailwind CSS classes instantly. Use the color picker for easy class suggestions and management.",
   "publisher": "OmriGrossman",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "icon": "assets/tailwind-color-matcher-ext-logo.png",
   "galleryBanner": {
     "color": "#6490d7",
@@ -70,8 +70,7 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
-    "prepare": "husky install"
+    "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
@@ -82,7 +81,7 @@
     "@vscode/test-electron": "^2.3.4",
     "eslint": "^8.47.0",
     "glob": "^10.3.3",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
     "mocha": "^10.2.0",
     "prettier": "3.0.3",

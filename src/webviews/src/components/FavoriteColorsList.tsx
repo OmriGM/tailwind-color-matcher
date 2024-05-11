@@ -9,14 +9,20 @@ export const FavoriteColors = () => {
     <>
       <div className={'flex items-center gap-2'}>
         <HeartFilledIcon />
-        <h2>Favorite Colors</h2>
+        <span className={'text-xl'}>Favorite Colors</span>
       </div>
-      <div className={'flex flex-col w-full overflow-y-auto gap-3'}>
-        {favoriteColors.length
-          ? favoriteColors.map((color) => (
-              <FavoriteColorItem key={color.name} color={color} />
-            ))
-          : 'No favorite colors yet'}
+      <div
+        className={'max-h-96 flex flex-col w-full overflow-y-auto gap-3 pr-2'}
+      >
+        {favoriteColors.length ? (
+          favoriteColors.map((color) => (
+            <FavoriteColorItem key={color.name} color={color} />
+          ))
+        ) : (
+          <span className={'text-lg self-center mt-6'}>
+            - Click on the ♡ to add a new color -
+          </span>
+        )}
       </div>
     </>
   );

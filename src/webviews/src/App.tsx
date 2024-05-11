@@ -9,6 +9,7 @@ import { ColorProvider } from './providers/colorProvider';
 import { ColorMatch } from './types';
 import { colors } from './v3';
 import { useSendAnalytics } from './hooks/useAnalytics';
+import { DonationSection } from './components/Donate';
 
 const App = () => {
   const { postError } = useMessageBroker();
@@ -61,17 +62,20 @@ const App = () => {
     <ColorProvider>
       <div
         className={
-          'flex flex-col mx-auto gap-6 p-4 w-screen bg-vscode-panel-background h-full'
+          'flex flex-col bg-vscode-panel-background h-full justify-between'
         }
       >
-        <ColorBox colorMatch={colorMatch} />
-        <ColorInput
-          hex={hexColor}
-          onChange={(color: string) => {
-            setHexColor(color);
-          }}
-        />
-        <FavoriteColors />
+        <div className={'flex flex-col gap-4 p-4 w-screen'}>
+          <ColorBox colorMatch={colorMatch} />
+          <ColorInput
+            hex={hexColor}
+            onChange={(color: string) => {
+              setHexColor(color);
+            }}
+          />
+          <FavoriteColors />
+        </div>
+        <DonationSection />
       </div>
     </ColorProvider>
   );

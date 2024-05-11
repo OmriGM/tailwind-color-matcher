@@ -62,6 +62,7 @@ export const ColorBox = ({ colorMatch }: ColorBoxProps) => {
       <CopyColorButton iconClassName={iconClassName} value={colorMatch.name} />
     </>
   );
+
   return (
     <div
       className={`bg-${colorMatch.name} h-44 rounded-md relative w-full`}

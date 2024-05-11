@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: '../../media',
+    assetsDir: '.',
     rollupOptions: {
       output: {
         entryFileNames: 'main.js',
