@@ -16,11 +16,5 @@
     // "noUnusedParameters": true,  /* Report errors on unused parameters. */
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*"],
-  "exclude": [
-    "src/test/e2e",
-    "src/webviews/generate_tests_panel/vite.config.ts",
-    "src/webviews/chat_panel/vite.config.ts",
-    "external_test_data"
-  ]
+  "include": ["src/**/*"]
 }
